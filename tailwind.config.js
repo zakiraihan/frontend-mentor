@@ -25,13 +25,20 @@ module.exports = {
           'pale-blue': 'hsl(221, 100%, 96%)',
           'light-lavender': 'hsl(241, 100%, 89%)',
           'dark-grey-blue': 'hsl(224, 30%, 27%)'
+        },
+        'isdn': {
+          'almost-white': 'hsl(0, 0%, 98%)',
+          'medium-gray': 'hsl(0, 0%, 41%)',
+          'almost-black': 'hsl(0, 0%, 8%)'
         }
       },
       boxShadow: {
-        'blue': '30px 30px 60px -40px hsla(234, 85%, 45%, 0.4)'
+        'blue': '30px 30px 60px -40px hsla(234, 85%, 45%, 0.4)',
+        'custom-black': '0 5px 20px 0px rgba(0, 0, 0, 0.2)'
       },
       fontFamily: {
         'hanken-grotesk': ['\'Hanken Grotesk\'', 'sans-serif'],
+        'epilogue': ['\'Epilogue\'', 'sans-serif']
       }
     },
   },
