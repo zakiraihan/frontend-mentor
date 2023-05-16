@@ -1,7 +1,6 @@
-import React, { Fragment } from 'react'
-
 import { INavbarItem } from '@/interface/intro-section-dropdown-nav'
 import Image from 'next/image';
+import React from 'react'
 
 function NavbarItem({ item, onClick }: NavbarItemProps) {
   return (
@@ -40,7 +39,11 @@ function NavbarItem({ item, onClick }: NavbarItemProps) {
         </div>
         <div className='md:absolute rounded bg-white md:shadow-custom-black w-auto h-auto top-10 left-0 px-2 py-5 space-y-1'>
           {item.childs.map((child) => (
-            <div key={'navItemChild: ' + child.text} className='flex items-center pl-3 pr-5 py-1 hover:bg-isdn-medium-gray hover:bg-opacity-20 hover:rounded-lg'>
+            <div 
+              key={'navItemChild: ' + child.text} 
+              className='flex items-center pl-3 pr-5 py-1 hover:bg-isdn-medium-gray hover:bg-opacity-20 hover:rounded-lg'
+              onClick={(e) => e.stopPropagation()}
+            >
               {child.icon &&
                 <div className='w-7 mr-2'>
                   <Image

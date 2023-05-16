@@ -1,8 +1,8 @@
 import React from 'react'
 
 function Button({ type, text, className, onClick }: ButtonProps) {
-  let bgColor = 'bg-isdn-almost-black';
-  let textColor = 'text-isdn-almost-white';
+  let bgColor = 'bg-isdn-almost-black hover:bg-isdn-almost-white hover:border-2 hover:border-isdn-medium-gray';
+  let textColor = 'text-isdn-almost-white font-bold hover:text-isdn-almost-black';
 
   if (type === 'border') {
     textColor = 'text-isdn-medium-gray hover:text-isdn-almost-black';

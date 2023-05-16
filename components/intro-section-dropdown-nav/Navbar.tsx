@@ -7,9 +7,24 @@ import NavbarItem from './NavbarItem';
 function Navbar() {
   const [navbarItems, setNavbarItems] = useState<Array<INavbarItem>>([]);
   const [showNavbarItems, setShowNavbarItems] = useState(false);
+  const [navbarBackgroundColor, setNavbarBackgroundColor] = useState('');
+
+  function navbarBackgroundOnScroll() {
+    if (window.scrollY > 66) {
+      setNavbarBackgroundColor('bg-isdn-almost-white bg-opacity-50');
+    }
+    else {
+      setNavbarBackgroundColor('');
+    }
+  }
 
   useEffect(() => {
     setNavbarItems(navbarItemList);
+    window.addEventListener('scroll', navbarBackgroundOnScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', navbarBackgroundOnScroll)
+    }
   }, [])
 
   function onClickNavbarItem(item: INavbarItem) {
@@ -34,7 +49,7 @@ function Navbar() {
   }
 
   return (
-    <div className='fixed w-full pt-5 pb-5 px-5 md:px-8 md:py-8 flex items-center justify-between'>
+    <div className={`fixed w-full pt-5 pb-5 px-5 md:px-8 md:pt-8 flex items-center justify-between ${navbarBackgroundColor}`}>
       <div className='flex w-auto items-start'>
         <div className='w-24'>
           <Image
