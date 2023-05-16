@@ -63,7 +63,7 @@ function Navbar() {
         </div>
         <ul className='hidden md:flex space-x-8 ml-12'>
           {navbarItems.map((navbarItem: INavbarItem, index) => (
-            <NavbarItem item={navbarItem} onClick={onClickNavbarItem} />
+            <NavbarItem key={'navbarItem: ' + index} item={navbarItem} onClick={onClickNavbarItem} />
           ))}
         </ul>
       </div>
@@ -105,7 +105,7 @@ function Navbar() {
             
             <ul className='pt-14 px-7 space-y-5'>
               {navbarItems.map((navbarItem: INavbarItem, index) => (
-                <NavbarItem item={navbarItem} onClick={onClickNavbarItem} />
+                <NavbarItem key={'navbarItem: ' + index} item={navbarItem} onClick={onClickNavbarItem} />
               ))}
             </ul>
 

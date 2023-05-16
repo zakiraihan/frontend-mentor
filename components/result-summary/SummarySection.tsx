@@ -8,7 +8,7 @@ function SummarySection(props: SummarySectionProps) {
       <p className='text-rs-dark-grey-blue font-bold text-xl'>Summary</p>
       <ul className='mt-5 space-y-5'>
         {props.items.map((item: SummaryItem, index: number) => (
-          <li>
+          <li key={'item: ' + index}>
             <SummaryItem item={item} />
           </li>
         ))}
