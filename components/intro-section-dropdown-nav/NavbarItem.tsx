@@ -4,7 +4,7 @@ import React from 'react'
 
 function NavbarItem({ item, onClick }: NavbarItemProps) {
   return (
-    <div key={'navbarItem: ' + item.text} className={`flex flex-col justify-center relative ${item.isActive ? 'text-isdn-almost-black' : 'text-isdn-medium-gray'} hover:text-isdn-almost-black cursor-pointer`} onClick={() => onClick(item)}>
+    <li key={'navbarItem: ' + item.text} className={`flex flex-col justify-center relative ${item.isActive ? 'text-isdn-almost-black' : 'text-isdn-medium-gray'} hover:text-isdn-almost-black cursor-pointer`} onClick={() => onClick(item)}>
       <div className='flex items-center'>
         <p className='select-none'>{ item.text }</p>
         
@@ -62,7 +62,7 @@ function NavbarItem({ item, onClick }: NavbarItemProps) {
         </div>
         </>
       }
-    </div>
+    </li>
   )
 }
 

@@ -49,7 +49,7 @@ function Navbar() {
   }
 
   return (
-    <div className={`fixed w-full pt-5 pb-5 px-5 md:px-8 md:pt-8 flex items-center justify-between ${navbarBackgroundColor}`}>
+    <nav className={`fixed w-full pt-5 pb-5 px-5 md:px-8 md:pt-8 flex items-center justify-between ${navbarBackgroundColor}`}>
       <div className='flex w-auto items-start'>
         <div className='w-24'>
           <Image
@@ -61,11 +61,11 @@ function Navbar() {
             sizes='100%'
           />
         </div>
-        <div className='hidden md:flex space-x-8 ml-12'>
+        <ul className='hidden md:flex space-x-8 ml-12'>
           {navbarItems.map((navbarItem: INavbarItem, index) => (
             <NavbarItem item={navbarItem} onClick={onClickNavbarItem} />
           ))}
-        </div>
+        </ul>
       </div>
 
       <div className='hidden md:flex items-center space-x-10'>
@@ -103,11 +103,11 @@ function Navbar() {
               />
             </div>
             
-            <div className='pt-14 px-7 space-y-5'>
+            <ul className='pt-14 px-7 space-y-5'>
               {navbarItems.map((navbarItem: INavbarItem, index) => (
                 <NavbarItem item={navbarItem} onClick={onClickNavbarItem} />
               ))}
-            </div>
+            </ul>
 
             <div className='w-full flex flex-col items-center mt-10'>
               <div className='text-isdn-medium-gray hover:text-isdn-almost-black cursor-pointer select-none mb-5'>
@@ -118,7 +118,7 @@ function Navbar() {
           </div>
         </div>
       }
-    </div>
+    </nav>
   )
 }
 
