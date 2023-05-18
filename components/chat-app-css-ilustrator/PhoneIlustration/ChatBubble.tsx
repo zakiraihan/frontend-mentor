@@ -20,8 +20,8 @@ function ChatBubble({ chat, index }: ChatBubbleProps) {
     <div>
       { data.images && data.images.length > 0 &&
         <div className={`mb-2 w-full h-12 flex items-center ${chatImagePositionStyle} space-x-2`}>
-          {data.images.map((image: IChatDataImage, index) => (
-            <div className='w-12 h-12 rounded-md overflow-hidden'>
+          {data.images.map((image: IChatDataImage, imageIndex) => (
+            <div key={'Chat: ' + index + '| Image: ' + imageIndex} className='w-12 h-12 rounded-md overflow-hidden'>
               <Image 
                 src={image.url}
                 alt=''
