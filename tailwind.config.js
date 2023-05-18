@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin')
+
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -30,6 +32,21 @@ module.exports = {
           'almost-white': 'hsl(0, 0%, 98%)',
           'medium-gray': 'hsl(0, 0%, 41%)',
           'almost-black': 'hsl(0, 0%, 8%)'
+        },
+        'caci': {
+          'text-50': 'hsl(276, 100%, 81%)', //sub-heading at the top of the app UI
+          'text-100': 'hsl(276, 55%, 52%)', //chat on the left
+          'text-150': 'hsl(271, 15%, 43%)', //chat on the right
+          'text-200': 'hsl(206, 6%, 79%)', //placeholder text
+          'text-250': 'hsl(271, 36%, 24%)', //main heading
+          'text-300': 'hsl(270, 7%, 64%)', //paragraph
+          'grad-100': 'hsl(293, 100%, 63%)',
+          'grad-900': 'hsl(264, 100%, 61%)',
+          'secondary-0': 'rgb(250,250,250)',
+          'secondary-100': 'hsl(270, 20%, 96%)', //app bg
+          'secondary-200': 'hsl(271, 36%, 24%)', //submit button bg
+          'secondary-300': 'hsl(289, 100%, 72%)', //radio button outline
+          'secondary-400': '#EDE5F4', //bg chat on the left 
         }
       },
       boxShadow: {
@@ -38,9 +55,28 @@ module.exports = {
       },
       fontFamily: {
         'hanken-grotesk': ['\'Hanken Grotesk\'', 'sans-serif'],
-        'epilogue': ['\'Epilogue\'', 'sans-serif']
+        'epilogue': ['\'Epilogue\'', 'sans-serif'],
+        'rubik': ['\'Rubik\'', 'sans-serif'],
       }
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.scrollbar-hide': {
+          /* IE and Edge */
+          '-ms-overflow-style': 'none',
+
+          /* Firefox */
+          'scrollbar-width': 'none',
+
+          /* Safari and Chrome */
+          '&::-webkit-scrollbar': {
+            display: 'none'
+          }
+        }
+      }
+      )
+    })
+  ],
 }
