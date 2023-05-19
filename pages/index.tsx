@@ -91,5 +91,10 @@ const currentProjects = [
     name: 'Chat App Ilustration',
     description: 'Frontend Mentor challange related to task Chat app ilustrator',
     url: '/chat-app-css-ilustrator'
-  }
+  },
+  {
+    name: 'Multi Form',
+    description: 'Frontend Mentor challange related to task Multi Form',
+    url: '/multi-form'
+  },
 ] satisfies Array<IProject>
