@@ -1,9 +1,10 @@
 import React, { useMemo, useState } from 'react'
 
 import Image from 'next/image'
-import { BaseFormProps, IFormData, IFormDataAddOns, IFormStep } from '@/interface/multi-form';
+import { BaseFormProps, IFormData, IFormDataAddOns, IFormStep, IPlanSelection } from '@/interface/multi-form';
 import PersonalInfoForm from '@/components/multi-form/PersonalInfoForm';
 import FormHeader from '@/components/multi-form/FormHeader';
+import PlanSelectionForm from '@/components/multi-form/PlanSelectionForm';
 
 function MultiFormPage() {
   const [currentActiveStep, setCurrentActiveStep] = useState<number>(1);
@@ -20,10 +21,19 @@ function MultiFormPage() {
       value: '',
       isValid: true
     },
-    plan: {
+    planType: {
       type: 'arcade',
-      occurance: 'monthly'
+      cost: {
+        monthly: '$9/mo',
+        yearly: '$90/yr',
+      },
+      benefit: {
+        monthly: '',
+        yearly: '2 months free',
+      },
+      image: ''
     },
+    planOccurance: 'monthly',
     addOns: [] satisfies Array<IFormDataAddOns>
   });
 
@@ -44,7 +54,7 @@ function MultiFormPage() {
      const {name, value, type, checked, validity} = event.target;
      setFormData((prevFormData) => {
         let newFormData: IFormData = { ...prevFormData }
-        console.log(validity)
+        
         if (type === 'text' || type === 'email' || type === 'tel'){
           newFormData = {
             ...newFormData,
@@ -58,8 +68,14 @@ function MultiFormPage() {
             }
           };
         }
-        else {
-          
+        else if (type === 'radio'){
+          const parsedValue: IPlanSelection = JSON.parse(value) satisfies IPlanSelection;
+          newFormData = {
+            ...newFormData,
+            [name]: {
+              ...parsedValue
+            }
+          }
         }
         return newFormData;
      })
@@ -70,6 +86,15 @@ function MultiFormPage() {
       case (1): {
         return (
           <PersonalInfoForm 
+            formStep={formSteps[currentActiveStep - 1]} 
+            formData={formData}
+            handleFormChanges={handleFormChanges}
+          />
+        )
+      }
+      case (2): {
+        return (
+          <PlanSelectionForm 
             formStep={formSteps[currentActiveStep - 1]} 
             formData={formData}
             handleFormChanges={handleFormChanges}
@@ -139,11 +164,23 @@ function MultiFormPage() {
                 { form }
               </FormHeader>
               <div className='fixed md:absolute bottom-0 left-0 right-0 md:left-0 md:right-0 h-16 md:h-20 px-5 md:px-24 flex items-center justify-between bg-white'>
-                <div className='h-10 flex items-center cursor-pointer hover:text-mf-primary-100'>
+                <div 
+                  className={`h-10 flex items-center cursor-pointer hover:text-mf-primary-100 ${currentActiveStep <= 1 ? 'invisible' : 'visible'}`}
+                  onClick={goToPrevStep}
+                >
                   Go Back
                 </div>
-                <div className='h-10 px-5 flex items-center cursor-pointer text-white bg-mf-primary-100 hover:bg-opacity-90 rounded-md '>
+                <div 
+                  className={`h-10 px-5 items-center cursor-pointer text-white bg-mf-primary-100 hover:bg-opacity-90 rounded-md ${currentActiveStep > 3 ? 'hidden' : 'flex'}`}
+                  onClick={goToNextStep}
+                >
                   Next Step
+                </div>
+                <div 
+                  className={`h-10 px-5 items-center cursor-pointer text-white bg-mf-primary-200 hover:bg-opacity-90 rounded-md ${currentActiveStep > 3 ? 'flex' : 'hidden'}`}
+                  onClick={goToNextStep}
+                >
+                  Confirm
                 </div>
               </div>
             </div>

@@ -1,7 +1,6 @@
-import { BaseFormProps, IFormDataPersonal } from '@/interface/multi-form';
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment } from 'react'
 
-import FormHeader from './FormHeader';
+import { BaseFormProps } from '@/interface/multi-form';
 
 function PersonalInfoForm({ formStep, formData, handleFormChanges }: PersonalInfoFormProps) {
   return (
@@ -44,7 +43,7 @@ function PersonalInfoForm({ formStep, formData, handleFormChanges }: PersonalInf
 
 export default PersonalInfoForm;
 
-export interface PersonalInfoFormProps extends BaseFormProps {};
+interface PersonalInfoFormProps extends BaseFormProps {};
 
 function PersonalInforFormInput({
   type,
