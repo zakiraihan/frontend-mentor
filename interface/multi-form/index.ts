@@ -1,4 +1,4 @@
-import { PersonalInfoProps } from "@/components/multi-form/PersonalInfo";
+import { PersonalInfoFormProps } from "@/components/multi-form/PersonalInfoForm";
 import React from "react";
 
 export interface IFormStep {
@@ -11,7 +11,7 @@ export interface IFormStep {
 export interface BaseFormProps {
   formStep: IFormStep; 
   formData: IFormData;
-  onSubmitForm: (data: IFormData) => void;
+  handleFormChanges: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface IFormData extends IFormDataPersonal {
@@ -20,9 +20,15 @@ export interface IFormData extends IFormDataPersonal {
 }
 
 export interface IFormDataPersonal {
-  name: string;
-  email: string;
-  phone: string;
+  name: IFormDataString
+  email: IFormDataString;
+  phone: IFormDataString;
+}
+
+export interface IFormDataString {
+  value: string;
+  isValid?: boolean;
+  errorMessage?: string;
 }
 
 export interface IFormDataPlan {
