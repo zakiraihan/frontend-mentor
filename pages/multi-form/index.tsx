@@ -103,8 +103,8 @@ function MultiFormPage() {
           ))}
         </div>
       </nav>
-      <div className='z-10 w-11/12 h-auto md:w-8/12 md:min-h-[calc(100vh*3/4)] md:h-0 mt-[6.2rem] md:mt-0 md:px-4 md:py-4 rounded-lg shadow-custom-black-1/2 flex bg-white'>
-        <nav className='hidden md:flex md:w-[10%] lg:w-[28.6%] h-full relative '>
+      <div className='z-10 w-11/12 h-auto md:w-3/5 mt-[6.2rem] md:mt-0 md:px-4 md:py-4 rounded-lg shadow-custom-black-1/2 flex bg-white'>
+        <nav className='hidden md:flex md:w-1/3 h-full relative '>
           <Image
             alt='bg'
             src='/assets/multi-form/images/bg-sidebar-desktop.svg'
@@ -112,9 +112,9 @@ function MultiFormPage() {
             sizes='100%'
             width={0}
             height={0}
-            className='object-contain w-full absolute'
+            className='object-contain w-full'
           />
-          <div className='z-10 w-full mx-5 my-9 flex flex-col justify-start space-y-8'>
+          <div className='w-full mx-5 my-9 flex flex-col justify-start space-y-8 absolute'>
             {formSteps.map((item: IFormStep, index) => (
               item.step > 4 || item.step < 0 ? 
                 null :
@@ -142,7 +142,7 @@ function MultiFormPage() {
                 <div className='h-10 flex items-center cursor-pointer hover:text-mf-primary-100'>
                   Go Back
                 </div>
-                <div className='h-10 px-5 flex items-center cursor-pointer text-white bg-mf-primary-100 rounded-md '>
+                <div className='h-10 px-5 flex items-center cursor-pointer text-white bg-mf-primary-100 hover:bg-opacity-90 rounded-md '>
                   Next Step
                 </div>
               </div>
