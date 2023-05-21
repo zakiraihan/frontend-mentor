@@ -29,9 +29,9 @@ function PersonalInfoForm({ formData, handleFormChanges }: PersonalInfoFormProps
       <PersonalInforFormInput
         type='tel'
         label='phone'
-        pattern='\+[0-9]{1,2} [0-9]{10,12}'
+        pattern='\+[0-9]{1,2}[0-9]{10,12}'
         title='Phone Number'
-        placeholder='e.g. +1 2345678901'
+        placeholder='e.g. +12345678901'
         value={formData.phone.value}
         isValid={formData.phone.isValid}
         errorMessage={formData.phone.errorMessage}

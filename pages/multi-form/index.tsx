@@ -34,13 +34,35 @@ function MultiFormPage() {
 
   function goToNextStep() {
     if (currentActiveStep < 5) {
+      if (currentActiveStep === 1) {
+        const checkEmptyFirstStepForm = formData.name.value && formData.email.value && formData.phone.value;
+        setFormData(prevState => ({
+          ...prevState,
+          name: {
+            ...prevState.name,
+            isValid: prevState.name.value ? true : false,
+            errorMessage: "This field is required",
+          },
+          email: {
+            ...prevState.email,
+            isValid: prevState.email.value ? true : false,
+            errorMessage: "This field is required",
+          },
+          phone: {
+            ...prevState.phone,
+            isValid: prevState.phone.value ? true : false,
+            errorMessage: "This field is required",
+          }
+        }))
+        if (!checkEmptyFirstStepForm) return;
+      }
       setCurrentActiveStep(prevState => prevState + 1);
       window.scrollTo(0,0);
     }
   }
 
   function goToPrevStep() {
-    if (currentActiveStep > 0) {
+    if (currentActiveStep > 1) {
       setCurrentActiveStep(prevState => prevState - 1);
     }
   }
