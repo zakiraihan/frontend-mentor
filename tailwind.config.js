@@ -47,16 +47,30 @@ module.exports = {
           'secondary-200': 'hsl(271, 36%, 24%)', //submit button bg
           'secondary-300': 'hsl(289, 100%, 72%)', //radio button outline
           'secondary-400': '#EDE5F4', //bg chat on the left 
+        },
+        'mf': {
+          'primary-100': 'hsl(213, 96%, 18%)',
+          'primary-200': 'hsl(243, 100%, 62%)',
+          'primary-300': 'hsl(228, 100%, 84%)',
+          'primary-400': 'hsl(206, 94%, 87%)',
+          'primary-500': 'hsl(354, 84%, 57%)',
+          'neutral-100': 'hsl(231, 11%, 63%)',
+          'neutral-200': 'hsl(229, 24%, 87%)',
+          'neutral-300': 'hsl(217, 100%, 97%)',
+          'neutral-400': 'hsl(231, 100%, 99%)',
+          'neutral-500': 'rgb(238,245,255)'
         }
       },
       boxShadow: {
         'blue': '30px 30px 60px -40px hsla(234, 85%, 45%, 0.4)',
-        'custom-black': '0 5px 20px 0px rgba(0, 0, 0, 0.2)'
+        'custom-black-1/2': '0 5px 20px 0px rgba(0, 0, 0, 0.1)',
+        'custom-black': '0 5px 20px 0px rgba(0, 0, 0, 0.2)',
       },
       fontFamily: {
         'hanken-grotesk': ['\'Hanken Grotesk\'', 'sans-serif'],
         'epilogue': ['\'Epilogue\'', 'sans-serif'],
         'rubik': ['\'Rubik\'', 'sans-serif'],
+        'ubuntu': ['\'Ubuntu\'', 'sans-serif']
       }
     },
   },
