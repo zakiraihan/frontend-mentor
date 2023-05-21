@@ -20,7 +20,7 @@ function PlanSelectionForm({ formData, handleFormChanges }: BaseFormProps) {
             />
             <label  
               htmlFor={plan.type}
-              className={`w-full md:w-[31%] py-4 px-4 border-[1px] rounded-md flex items-start md:flex-col md:space-y-10 ${formData.planType.type === plan.type ? 'border-mf-primary-100' : 'border-mf-neutral-200'}`}
+              className={`w-full md:w-[31%] py-4 px-4 border-[1px] rounded-md flex items-start md:flex-col md:space-y-10 cursor-pointer hover:border-mf-primary-100 ${formData.planType.type === plan.type ? 'border-mf-primary-200 bg-mf-neutral-400' : 'border-mf-neutral-200'}`}
             >
               <div className='w-12 h-12 rounded-full mr-4'>
                 <Image
@@ -58,7 +58,7 @@ function PlanSelectionForm({ formData, handleFormChanges }: BaseFormProps) {
         </p>
         <label 
           htmlFor='planOccurrence' 
-          className='mx-4 w-14 h-7 flex items-center px-1 py-1 bg-mf-primary-100 rounded-full relative'
+          className='mx-4 w-14 h-7 flex items-center px-1 py-1 cursor-pointer bg-mf-primary-100 rounded-full relative'
         >
           <input 
             type='checkbox' 

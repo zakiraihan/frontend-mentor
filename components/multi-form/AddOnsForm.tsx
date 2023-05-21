@@ -9,7 +9,7 @@ function AddOnsForm({ formData, handleFormChanges }: BaseFormProps) {
       {formData.addOns.map((addOn: IFormDataAddOns, index) => (
         <div
           key={'Addons: ' + index} 
-          className={`w-full border-[1px] rounded-md flex overflow-hidden ${addOn.isChecked ? 'border-mf-primary-100' : 'border-mf-neutral-200'}`}
+          className={`w-full border-[1px] rounded-md flex overflow-hidden cursor-pointer hover:border-mf-primary-100 ${addOn.isChecked ? 'border-mf-primary-200 bg-mf-neutral-400' : 'border-mf-neutral-200'}`}
         >
           <input
             type={'checkbox'}
@@ -21,7 +21,7 @@ function AddOnsForm({ formData, handleFormChanges }: BaseFormProps) {
           />
           <label 
             htmlFor={addOn.header}
-            className={'w-full px-4 py-4 flex items-center '}
+            className={'w-full px-4 py-4 flex items-center cursor-pointer'}
           >
             <div className={`w-5 h-5 border-[1px] border-mf-neutral-200 rounded-[4px] flex items-center justify-center ${addOn.isChecked ? 'bg-mf-primary-200' : ''}`}>
               <Image 
