@@ -1,13 +1,16 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 
 import Image from 'next/image'
-import { BaseFormProps, IFormData, IFormDataAddOns, IFormStep, IPlanSelection } from '@/interface/multi-form';
+import { IFormData, IFormDataAddOns, IFormStep, IPlanSelection } from '@/interface/multi-form';
 import PersonalInfoForm from '@/components/multi-form/PersonalInfoForm';
 import FormHeader from '@/components/multi-form/FormHeader';
 import PlanSelectionForm from '@/components/multi-form/PlanSelectionForm';
+import { availableAddOns, defaultPlanOccurrence, defaultSelectedPlan, formSteps } from '@/mockdata/multi-form-data';
+import AddOnsForm from '@/components/multi-form/AddOnsForm';
 
 function MultiFormPage() {
   const [currentActiveStep, setCurrentActiveStep] = useState<number>(1);
+  const formContainerRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState<IFormData>({
     name: {
       value: '',
@@ -21,33 +24,25 @@ function MultiFormPage() {
       value: '',
       isValid: true
     },
-    planType: {
-      type: 'arcade',
-      cost: {
-        monthly: '$9/mo',
-        yearly: '$90/yr',
-      },
-      benefit: {
-        monthly: '',
-        yearly: '2 months free',
-      },
-      image: ''
-    },
-    planOccurance: 'monthly',
-    addOns: [] satisfies Array<IFormDataAddOns>
+    planType: defaultSelectedPlan,
+    planOccurrence: defaultPlanOccurrence,
+    addOns: [ ...availableAddOns ] satisfies Array<IFormDataAddOns>
   });
 
   let stepStyle = 'bg-transparent text-white border-2 border-mf-neutral-100';
   let activeStepStyle = 'bg-mf-neutral-200 text-mf-primary-100 font-bold';
 
   function goToNextStep() {
-    if (currentActiveStep < 5)
+    if (currentActiveStep < 5) {
       setCurrentActiveStep(prevState => prevState + 1);
+      window.scrollTo(0,0);
+    }
   }
 
   function goToPrevStep() {
-    if (currentActiveStep > 0)
+    if (currentActiveStep > 0) {
       setCurrentActiveStep(prevState => prevState - 1);
+    }
   }
 
   function handleFormChanges(event: React.ChangeEvent<HTMLInputElement>) {
@@ -77,6 +72,26 @@ function MultiFormPage() {
             }
           }
         }
+        else if (type === 'checkbox') {
+          if (name === 'planOccurrence') {
+            newFormData = {
+              ...newFormData,
+              planOccurrence: checked ? 'yearly' : 'monthly'
+            }
+          }
+          else {
+            newFormData = {
+              ...newFormData,
+              addOns: newFormData.addOns.map((addOn: IFormDataAddOns) => (
+                addOn.header === name ? 
+                {
+                  ...addOn,
+                  isChecked: !addOn.isChecked
+                } : addOn
+              ))
+            }
+          }
+        }
         return newFormData;
      })
   }
@@ -86,7 +101,6 @@ function MultiFormPage() {
       case (1): {
         return (
           <PersonalInfoForm 
-            formStep={formSteps[currentActiveStep - 1]} 
             formData={formData}
             handleFormChanges={handleFormChanges}
           />
@@ -95,7 +109,14 @@ function MultiFormPage() {
       case (2): {
         return (
           <PlanSelectionForm 
-            formStep={formSteps[currentActiveStep - 1]} 
+            formData={formData}
+            handleFormChanges={handleFormChanges}
+          />
+        )
+      }
+      case (3): {
+        return (
+          <AddOnsForm
             formData={formData}
             handleFormChanges={handleFormChanges}
           />
@@ -108,7 +129,7 @@ function MultiFormPage() {
   }, [currentActiveStep, formData])
 
   return (
-    <div className='w-full min-h-screen h-auto bg-mf-neutral-500 flex items-start md:items-center justify-center relative'>
+    <div className='w-full min-h-screen bg-mf-neutral-500 flex items-start md:items-center justify-center relative'>
       <nav className='fixed md:hidden w-full'>
         <Image
           alt='bg'
@@ -128,7 +149,10 @@ function MultiFormPage() {
           ))}
         </div>
       </nav>
-      <div className='z-10 w-11/12 h-auto md:w-3/5 mt-[6.2rem] md:mt-0 md:px-4 md:py-4 rounded-lg shadow-custom-black-1/2 flex bg-white'>
+      <div 
+        ref={formContainerRef}
+        className='z-10 w-11/12 h-auto md:w-3/5 mt-[6.2rem] md:mt-0 md:px-4 md:py-4 rounded-lg shadow-custom-black-1/2 flex bg-white'
+      >
         <nav className='hidden md:flex md:w-1/3 h-full relative '>
           <Image
             alt='bg'
@@ -191,36 +215,3 @@ function MultiFormPage() {
 }
 
 export default MultiFormPage;
-
-const formSteps = [
-  {
-    step: 1,
-    title: 'YOUR INFO',
-    header: 'Personal Info',
-    subHeader: 'Please provide your name, email address, and phone number.'
-  },
-  {
-    step: 2,
-    title: 'SELECT PLAN',
-    header: 'Select Your Plan',
-    subHeader: 'You have the option of monthly or yearly billing.'
-  },
-  {
-    step: 3,
-    title: 'ADD-ONS',
-    header: 'Pick add-ons',
-    subHeader: 'Add-ons help enhance your gaming experience.'
-  },
-  {
-    step: 4,
-    title: 'SUMMARY',
-    header: 'Finishing up',
-    subHeader: 'Double-check everything looks OK before confirming.'
-  },
-  {
-    step: 5,
-    title: 'FINISH',
-    header: 'Thank you!',
-    subHeader: 'Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com.'
-  },
-] satisfies Array<IFormStep>

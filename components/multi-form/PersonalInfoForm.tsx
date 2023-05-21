@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 
 import { BaseFormProps } from '@/interface/multi-form';
 
-function PersonalInfoForm({ formStep, formData, handleFormChanges }: PersonalInfoFormProps) {
+function PersonalInfoForm({ formData, handleFormChanges }: PersonalInfoFormProps) {
   return (
     <Fragment>
       <PersonalInforFormInput

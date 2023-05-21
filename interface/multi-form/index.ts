@@ -8,14 +8,13 @@ export interface IFormStep {
 }
 
 export interface BaseFormProps {
-  formStep: IFormStep; 
   formData: IFormData;
   handleFormChanges: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface IFormData extends IFormDataPersonal {
   planType: IFormDataPlan;
-  planOccurance: 'monthly' | 'yearly';
+  planOccurrence: 'monthly' | 'yearly';
   addOns: Array<IFormDataAddOns>;
 }
 
@@ -36,8 +35,11 @@ export interface IFormDataPlan extends IPlanSelection {}
 export interface IFormDataAddOns {
   header: string;
   subHeader: string;
-  cost: string;
-  isChecked: boolean
+  cost: {
+    yearly: string;
+    monthly: string;
+  };
+  isChecked: boolean;
 }
 
 export interface IPlanSelection {
