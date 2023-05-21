@@ -8,8 +8,9 @@ import PlanSelectionForm from '@/components/multi-form/PlanSelectionForm';
 import { availableAddOns, defaultPlanOccurrence, defaultSelectedPlan, formSteps } from '@/mockdata/multi-form-data';
 import AddOnsForm from '@/components/multi-form/AddOnsForm';
 import FormSummary from '@/components/multi-form/FormSummary';
+import { InferGetStaticPropsType } from 'next';
 
-function MultiFormPage() {
+function MultiFormPage({ defaultSelectedPlan, defaultPlanOccurrence, availableAddOns }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [currentActiveStep, setCurrentActiveStep] = useState<number>(1);
   const formContainerRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState<IFormData>({
@@ -263,4 +264,18 @@ function MultiFormPage() {
   )
 }
 
+export async function getStaticProps() {
+  // fetch data from an API
+  const mockFetchResult = {
+    defaultSelectedPlan,
+    defaultPlanOccurrence,
+    availableAddOns
+  }
+  
+  return {
+    props: mockFetchResult
+  }
+}
+
 export default MultiFormPage;
+

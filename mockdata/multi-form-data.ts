@@ -86,7 +86,7 @@ export const availablePlans = [
   },
 ] satisfies Array<IPlanSelection>;
 
-export const defaultPlanOccurrence = 'monthly';
+export const defaultPlanOccurrence: 'monthly' | 'yearly' = 'monthly';
 
 export const availableAddOns = [
   {
