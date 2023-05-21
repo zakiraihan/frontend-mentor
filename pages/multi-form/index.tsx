@@ -208,7 +208,14 @@ function MultiFormPage() {
             {formSteps.map((item: IFormStep, index) => (
               item.step > 4 || item.step < 0 ? 
                 null :
-                <div key={"itemStep: " + index} className='w-full flex'>
+                <div 
+                  key={"itemStep: " + index} 
+                  className='w-full flex' 
+                  // onClick={currentActiveStep < 5 ?
+                  //   () => jumpToStep(item.step)
+                  //   : undefined
+                  // }
+                >
                   <div className={`w-9 h-9 rounded-full flex items-center justify-center ${currentActiveStep === item.step || (currentActiveStep === 5 && currentActiveStep === item.step + 1) ? activeStepStyle : stepStyle}`}>
                     { item.step }
                   </div>
@@ -221,14 +228,15 @@ function MultiFormPage() {
           </div>
         </nav>
         <div className='md:w-[calc(100%-28.6%)] h-auto md:min-h-full md:px-2 md:pl-4 text-mf-neutral-100 overflow-hidden'>
-            <div className='w-full min-h-full px-5 py-8 md:px-24 md:py-0 md:pt-9 md:pb-20 relative'>
+            <div className={`w-full min-h-full px-5 py-8 md:px-24 md:py-0 md:pt-9 md:pb-20 relative ${currentActiveStep === 5 && 'md:flex md:items-center'}`}>
               <FormHeader 
-                header={formSteps[currentActiveStep-1].header} 
-                subHeader={formSteps[currentActiveStep-1].subHeader}
+                formSteps={formSteps[currentActiveStep - 1]}
               >
                 { form }
               </FormHeader>
-              <div className='fixed md:absolute bottom-0 left-0 right-0 md:left-0 md:right-0 h-16 md:h-20 px-5 md:px-24 flex items-center justify-between bg-white'>
+              <div 
+                className={`fixed md:absolute bottom-0 left-0 right-0 md:left-0 md:right-0 h-16 md:h-20 px-5 md:px-24 items-center justify-between bg-white ${currentActiveStep > 4 ? 'hidden' : 'flex'}`}
+              >
                 <div 
                   className={`h-10 flex items-center cursor-pointer hover:text-mf-primary-100 ${currentActiveStep <= 1 ? 'invisible' : 'visible'}`}
                   onClick={goToPrevStep}
