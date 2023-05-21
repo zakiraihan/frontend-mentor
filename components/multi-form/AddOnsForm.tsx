@@ -44,7 +44,9 @@ function AddOnsForm({ formData, handleFormChanges }: BaseFormProps) {
                 </p>
               </div>
               <p className='text-sm text-mf-primary-200'>
-                {formData.planOccurrence === 'monthly' ? addOn.cost.monthly : addOn.cost.yearly}
+                {formData.planOccurrence === 'monthly' ? 
+                  `+$${addOn.cost.monthly}/mo` : `+$${addOn.cost.yearly}/yr`
+                }
               </p>
             </div>
           </label>

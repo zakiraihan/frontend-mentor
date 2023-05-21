@@ -1,4 +1,4 @@
-import { IFormDataAddOns, IFormDataPlan, IFormStep } from "@/interface/multi-form";
+import { IFormDataAddOns, IFormDataPlan, IFormStep, IPlanSelection } from "@/interface/multi-form";
 
 export const formSteps = [
   {
@@ -36,8 +36,8 @@ export const formSteps = [
 export const defaultSelectedPlan = {
   type: 'arcade',
   cost: {
-    monthly: '$9/mo',
-    yearly: '$90/yr',
+    monthly: 9,
+    yearly: 90,
   },
   benefit: {
     monthly: '',
@@ -45,6 +45,46 @@ export const defaultSelectedPlan = {
   },
   image: ''
 } satisfies IFormDataPlan; 
+
+
+export const availablePlans = [
+  {
+    type: 'arcade',
+    cost: {
+      monthly: 9,
+      yearly: 90,
+    },
+    benefit: {
+      monthly: '',
+      yearly: '2 months free',
+    },
+    image: '/assets/multi-form/images/icon-arcade.svg'
+  },
+  {
+    type: 'advanced',
+    cost: {
+      monthly: 12,
+      yearly: 120,
+    },
+    benefit: {
+      monthly: '',
+      yearly: '2 months free',
+    },
+    image: '/assets/multi-form/images/icon-advanced.svg'
+  },
+  {
+    type: 'pro',
+    cost: {
+      monthly: 15,
+      yearly: 150,
+    },
+    benefit: {
+      monthly: '',
+      yearly: '2 months free',
+    },
+    image: '/assets/multi-form/images/icon-pro.svg'
+  },
+] satisfies Array<IPlanSelection>;
 
 export const defaultPlanOccurrence = 'monthly';
 
@@ -54,8 +94,8 @@ export const availableAddOns = [
     subHeader: 'Access to multiplayer games',
     isChecked: false,
     cost: {
-      monthly: '+$1/mo',
-      yearly: '+$10/yr'
+      monthly: 1,
+      yearly: 10
     }
   },
   {
@@ -63,8 +103,8 @@ export const availableAddOns = [
     subHeader: 'Extra 1TB of cloud save',
     isChecked: false,
     cost: {
-      monthly: '+$2/mo',
-      yearly: '+$20/yr'
+      monthly: 2,
+      yearly: 20
     }
   },
   {
@@ -72,8 +112,8 @@ export const availableAddOns = [
     subHeader: 'Access to multiplayer games',
     isChecked: false,
     cost: {
-      monthly: '+$2/mo',
-      yearly: '+$20/yr'
+      monthly: 2,
+      yearly: 20
     }
   },
 ] satisfies Array<IFormDataAddOns>;

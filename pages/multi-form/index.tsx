@@ -7,6 +7,7 @@ import FormHeader from '@/components/multi-form/FormHeader';
 import PlanSelectionForm from '@/components/multi-form/PlanSelectionForm';
 import { availableAddOns, defaultPlanOccurrence, defaultSelectedPlan, formSteps } from '@/mockdata/multi-form-data';
 import AddOnsForm from '@/components/multi-form/AddOnsForm';
+import FormSummary from '@/components/multi-form/FormSummary';
 
 function MultiFormPage() {
   const [currentActiveStep, setCurrentActiveStep] = useState<number>(1);
@@ -61,10 +62,19 @@ function MultiFormPage() {
     }
   }
 
+  function jumpToStep(step: number) {
+    setCurrentActiveStep(step);
+  }
+
   function goToPrevStep() {
     if (currentActiveStep > 1) {
       setCurrentActiveStep(prevState => prevState - 1);
     }
+  }
+
+  function onConfirmSubmitForm() {
+    // Add post fetch to save form to db;
+    goToNextStep();
   }
 
   function handleFormChanges(event: React.ChangeEvent<HTMLInputElement>) {
@@ -141,6 +151,15 @@ function MultiFormPage() {
           <AddOnsForm
             formData={formData}
             handleFormChanges={handleFormChanges}
+          />
+        )
+      }
+      case (4): {
+        return (
+          <FormSummary
+            formData={formData}
+            handleFormChanges={handleFormChanges}
+            onClickChangePlan={jumpToStep}
           />
         )
       }
@@ -224,7 +243,7 @@ function MultiFormPage() {
                 </div>
                 <div 
                   className={`h-10 px-5 items-center cursor-pointer text-white bg-mf-primary-200 hover:bg-opacity-90 rounded-md ${currentActiveStep > 3 ? 'flex' : 'hidden'}`}
-                  onClick={goToNextStep}
+                  onClick={onConfirmSubmitForm}
                 >
                   Confirm
                 </div>

@@ -1,12 +1,14 @@
 import { BaseFormProps, IPlanSelection } from '@/interface/multi-form';
-import Image from 'next/image';
 import React, { Fragment } from 'react'
+
+import Image from 'next/image';
+import { availablePlans } from '@/mockdata/multi-form-data';
 
 function PlanSelectionForm({ formData, handleFormChanges }: BaseFormProps) {
   return (
     <Fragment>
       <div className='flex flex-col md:flex-row space-y-5 md:space-y-0 md:justify-between '>
-        {planList.map((plan: IPlanSelection, index) => (
+        {availablePlans.map((plan: IPlanSelection, index) => (
           <Fragment key={plan.type}>
             <input 
               type="radio" 
@@ -36,7 +38,7 @@ function PlanSelectionForm({ formData, handleFormChanges }: BaseFormProps) {
                 </p>
                 <p>
                   { formData.planOccurrence === 'monthly' ?
-                    plan.cost.monthly : plan.cost.yearly
+                    `$${plan.cost.monthly}/mo` : `$${plan.cost.yearly}/yr`
                   }
                 </p>
                 <p className='text-mf-primary-100 text-sm'>
@@ -81,42 +83,3 @@ function PlanSelectionForm({ formData, handleFormChanges }: BaseFormProps) {
 export default PlanSelectionForm;
 
 interface PlanSelectionFormProps extends BaseFormProps {}
-
-const planList = [
-  {
-    type: 'arcade',
-    cost: {
-      monthly: '$9/mo',
-      yearly: '$90/yr',
-    },
-    benefit: {
-      monthly: '',
-      yearly: '2 months free',
-    },
-    image: '/assets/multi-form/images/icon-arcade.svg'
-  },
-  {
-    type: 'advanced',
-    cost: {
-      monthly: '$12/mo',
-      yearly: '$120/yr',
-    },
-    benefit: {
-      monthly: '',
-      yearly: '2 months free',
-    },
-    image: '/assets/multi-form/images/icon-advanced.svg'
-  },
-  {
-    type: 'pro',
-    cost: {
-      monthly: '$15/mo',
-      yearly: '$150/yr',
-    },
-    benefit: {
-      monthly: '',
-      yearly: '2 months free',
-    },
-    image: '/assets/multi-form/images/icon-pro.svg'
-  },
-] satisfies Array<IPlanSelection>

@@ -36,8 +36,8 @@ export interface IFormDataAddOns {
   header: string;
   subHeader: string;
   cost: {
-    yearly: string;
-    monthly: string;
+    yearly: number;
+    monthly: number;
   };
   isChecked: boolean;
 }
@@ -45,8 +45,8 @@ export interface IFormDataAddOns {
 export interface IPlanSelection {
   type: 'arcade' | 'advanced' | 'pro';
   cost: {
-    yearly: string;
-    monthly: string;
+    yearly: number;
+    monthly: number;
   };
   benefit: {
     yearly: string;
