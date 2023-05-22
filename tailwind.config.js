@@ -66,6 +66,14 @@ module.exports = {
           'lime-green': '#59E391',
           'cream-white': '#F5F5F5',
           'light-gray': '#4A4E74'
+        },
+        'quizzical': {
+          'creamy-light-blue': '#F5F7FB',
+          'dark-blue': '#293264',
+          'creamy-dark-blue': '#4D5B9E',
+          'selected-answer': '#D6DBF5',
+          'right-answer': '#94D7A2',
+          'wrong-answer': '#F8BCBC'
         }
       },
       boxShadow: {
@@ -79,7 +87,8 @@ module.exports = {
         'epilogue': ['\'Epilogue\'', 'sans-serif'],
         'rubik': ['\'Rubik\'', 'sans-serif'],
         'ubuntu': ['\'Ubuntu\'', 'sans-serif'],
-        'karla': ['\'Karla\'', 'sans-serif']
+        'karla': ['\'Karla\'', 'sans-serif'],
+        'inter': ['\'Inter\'', 'sans-serif']
       }
     },
   },
