@@ -1,8 +1,9 @@
 import React from 'react'
+import TenziesApp from '@/components/tenzies/TenziesApp'
 
 function TenziesPage() {
   return (
-    <div>TenziesPage</div>
+    <TenziesApp />
   )
 }
 

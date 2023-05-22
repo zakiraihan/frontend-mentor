@@ -72,6 +72,7 @@ module.exports = {
         'blue': '30px 30px 60px -40px hsla(234, 85%, 45%, 0.4)',
         'custom-black-1/2': '0 5px 20px 0px rgba(0, 0, 0, 0.1)',
         'custom-black': '0 5px 20px 0px rgba(0, 0, 0, 0.2)',
+        'custom-tenzies-black': '0px 2px 2px rgba(0, 0, 0, 0.15)',
       },
       fontFamily: {
         'hanken-grotesk': ['\'Hanken Grotesk\'', 'sans-serif'],
