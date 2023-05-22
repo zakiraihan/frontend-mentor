@@ -2,16 +2,6 @@ import { IDice, IGameStatistics } from '@/interface/tenzies'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 function TenziesApp() {
-  const generateNewDiceSet = useCallback(() => {
-    return Array.from({length: 10}, () => Math.floor(
-      Math.random() * 6) + 1
-    ).map((value, index) => ({
-      id: index,
-      value: value,
-      isActive: false
-    } satisfies IDice))
-  }, [])
-
   const [diceNumbers, setDiceNumbers] = useState<Array<IDice>>([]);
   const [gameStatistics, setGameStatistics] = useState<IGameStatistics>({
     isGameCompleted: false,
@@ -27,7 +17,7 @@ function TenziesApp() {
   useEffect(() => {
     if (gameStatistics.countSame === 10) {
       setGameStatistics(prevState => ({
-        ...gameStatistics,
+        ...prevState,
         isGameCompleted: true,
         buttonText: 'Reset'
       }));
@@ -103,11 +93,12 @@ function TenziesApp() {
           Tenzies
         </p>
         <p className='text-center text-sm'>
-          Roll until all dice are the same. Click each die to freeze it at it's current value between rolls.
+          Roll until all dice are the same. Click each die to freeze it at it&#39;s current value between rolls.
         </p>
         <div className='w-full my-5 grid grid-cols-5 justify-items-center gap-2'>
           {diceNumbers?.map((dice: IDice, index) => (
             <button 
+              key={'DiceId: ' + dice.id}
               className={`w-10 h-10 flex items-center justify-center rounded-md shadow-custom-tenzies-black ${dice.isActive ? 'bg-tenzies-lime-green' : 'bg-white'} active:scale-90`}
               onClick={() => handleDiceClick(dice)}
               type='button'
@@ -128,6 +119,16 @@ function TenziesApp() {
       </div>
     </div>
   )
+}
+
+const generateNewDiceSet = () => {
+  return Array.from({length: 10}, () => Math.floor(
+    Math.random() * 6) + 1
+  ).map((value, index) => ({
+    id: index,
+    value: value,
+    isActive: false
+  } satisfies IDice))
 }
 
 export default TenziesApp;
