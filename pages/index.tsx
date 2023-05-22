@@ -97,4 +97,9 @@ const currentProjects = [
     description: 'Frontend Mentor challange related to task Multi Form',
     url: '/multi-form'
   },
+  {
+    name: 'Tenzies Game',
+    description: 'Simple game to get 10 same number by rolling dice',
+    url: '/tenzies'
+  },
 ] satisfies Array<IProject>

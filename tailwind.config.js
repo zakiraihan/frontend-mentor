@@ -59,6 +59,13 @@ module.exports = {
           'neutral-300': 'hsl(217, 100%, 97%)',
           'neutral-400': 'hsl(231, 100%, 99%)',
           'neutral-500': 'rgb(238,245,255)'
+        },
+        'tenzies': {
+          'dark-blue': '#2B283A',
+          'primary-blue': '#5035FF',
+          'lime-green': '#59E391',
+          'cream-white': '#F5F5F5',
+          'light-gray': '#4A4E74'
         }
       },
       boxShadow: {
@@ -70,7 +77,8 @@ module.exports = {
         'hanken-grotesk': ['\'Hanken Grotesk\'', 'sans-serif'],
         'epilogue': ['\'Epilogue\'', 'sans-serif'],
         'rubik': ['\'Rubik\'', 'sans-serif'],
-        'ubuntu': ['\'Ubuntu\'', 'sans-serif']
+        'ubuntu': ['\'Ubuntu\'', 'sans-serif'],
+        'karla': ['\'Karla\'', 'sans-serif']
       }
     },
   },
